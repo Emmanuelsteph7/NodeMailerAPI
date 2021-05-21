@@ -38,7 +38,8 @@ app.post("/.netlify/functions/api/contact", (req, res) => {
   `;
 
   let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
+//     host: "smtp.gmail.com",
+    host: "smtp-mail.outlook.com",
     port: 587,
     secure: false,
     auth: {
@@ -84,7 +85,8 @@ app.post("/.netlify/functions/api/quote", (req, res) => {
   `;
 
   let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
+//     host: "smtp.gmail.com",
+    host: "smtp-mail.outlook.com",
     port: 587,
     secure: false,
     auth: {
