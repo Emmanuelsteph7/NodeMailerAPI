@@ -61,7 +61,7 @@ app.post("/.netlify/functions/api/contact", (req, res) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
 //       return console.log(error);
-      return res.json(error);
+      return res.json(error, {"error": "yes"});
     }
 
     console.log("Message sent: ", info.messageId);
