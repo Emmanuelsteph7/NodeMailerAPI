@@ -17,6 +17,10 @@ app.get("/.netlify/functions/api/", (req, res) => {
   res.json({ message: "home" });
 });
 
+app.post("/.netlify/functions/api/hello", (req, res) => {
+  res.json({ message: "working" });
+});
+
 app.get("/.netlify/functions/api/hello", (req, res) => {
   res.json({ message: "hello" });
 });
