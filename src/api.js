@@ -65,8 +65,10 @@ app.post("/.netlify/functions/api/contact", (req, res) => {
 
     console.log("Message sent: ", info.messageId);
     console.log("Preview URL: ", nodemailer.getTextMessageUrl(info));
+
+    res.json(info);
   });
-  res.json({ message: "Email has been sent" });
+  // res.json({ message: "Email has been sent" });
 });
 
 app.post("/.netlify/functions/api/quote", (req, res) => {
