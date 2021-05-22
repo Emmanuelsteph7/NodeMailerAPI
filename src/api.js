@@ -38,7 +38,8 @@ app.post("/.netlify/functions/api/contact", (req, res) => {
   `;
 
   let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
+    // host: "smtp.gmail.com",
+    host: "smtp-mail.outlook.com",
     port: 587,
     secure: false,
     auth: {
@@ -58,16 +59,28 @@ app.post("/.netlify/functions/api/contact", (req, res) => {
     html: output,
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      return console.log(error);
-    }
+  try {
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return res.json(error);
+      }
 
-    console.log("Message sent: ", info.messageId);
-    console.log("Preview URL: ", nodemailer.getTextMessageUrl(info));
+      console.log("Message sent: ", info.messageId);
+      console.log("Preview URL: ", nodemailer.getTextMessageUrl(info));
+    });
+    res.json({ message: "Email has been sent" });
+  } catch (error) {
+    res.json(error);
+  }
 
-    res.json(info);
-  });
+  // transporter.sendMail(mailOptions, (error, info) => {
+  //   if (error) {
+  //     return res.json(error);
+  //   } else {
+  //     console.log("Message sent: ", info.messageId);
+  //     console.log("Preview URL: ", nodemailer.getTextMessageUrl(info));
+  //   }
+  // });
   // res.json({ message: "Email has been sent" });
 });
 
@@ -83,7 +96,8 @@ app.post("/.netlify/functions/api/quote", (req, res) => {
   `;
 
   let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
+    host: "smtp-mail.outlook.com",
+    // host: "smtp.gmail.com",
     port: 587,
     secure: false,
     auth: {
@@ -103,23 +117,19 @@ app.post("/.netlify/functions/api/quote", (req, res) => {
     html: output,
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      return console.log(error);
-    }
+  try {
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return res.json(error);
+      }
 
-    console.log("Message sent: ", info.messageId);
-    console.log("Preview URL: ", nodemailer.getTextMessageUrl(info));
-  });
-  res.json({ message: "Email has been sent" });
+      console.log("Message sent: ", info.messageId);
+      console.log("Preview URL: ", nodemailer.getTextMessageUrl(info));
+    });
+    res.json({ message: "Email has been sent" });
+  } catch (error) {
+    res.json(error);
+  }
 });
-
-// app.use("/.netlify/functions/server", router);
-
-// //port will be 5000 for testing
-// const PORT = process.env.PORT || 5000;
-// app.listen(PORT, () => {
-//   console.log(`Listening on port ${PORT}...`);
-// });
 
 module.exports.handler = serverless(app);
