@@ -38,7 +38,6 @@ app.post("/.netlify/functions/api/contact", (req, res) => {
   `;
 
   let transporter = nodemailer.createTransport({
-    // host: "smtp.gmail.com",
     host: "smtp-mail.outlook.com",
     port: 587,
     secure: false,
@@ -59,6 +58,7 @@ app.post("/.netlify/functions/api/contact", (req, res) => {
     html: output,
   };
 
+
   try {
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
@@ -72,16 +72,6 @@ app.post("/.netlify/functions/api/contact", (req, res) => {
   } catch (error) {
     res.json(error);
   }
-
-  // transporter.sendMail(mailOptions, (error, info) => {
-  //   if (error) {
-  //     return res.json(error);
-  //   } else {
-  //     console.log("Message sent: ", info.messageId);
-  //     console.log("Preview URL: ", nodemailer.getTextMessageUrl(info));
-  //   }
-  // });
-  // res.json({ message: "Email has been sent" });
 });
 
 app.post("/.netlify/functions/api/quote", (req, res) => {
@@ -97,7 +87,6 @@ app.post("/.netlify/functions/api/quote", (req, res) => {
 
   let transporter = nodemailer.createTransport({
     host: "smtp-mail.outlook.com",
-    // host: "smtp.gmail.com",
     port: 587,
     secure: false,
     auth: {
