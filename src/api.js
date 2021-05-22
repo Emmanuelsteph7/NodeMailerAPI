@@ -27,15 +27,17 @@ app.get("/.netlify/functions/api/hello", (req, res) => {
 
 app.post("/.netlify/functions/api/contact", (req, res) => {
   
-  if (!req.body.phone == undefined) {
+  const {name, email, phone, message} = req.body;
+  
+  if (phone) {
   const output = `
     <p>You have a new mail from ImperoTechne contact form</p>
     <h3>Contact Details</h3>
     <ul>
-      <li style="margin-bottom: 10px;">Name: ${req.body.name}</li>
-      <li style="margin-bottom: 10px;">Email: ${req.body.email}</li>
-      <li style="margin-bottom: 10px;">Phone: ${req.body.phone}</li>
-      <li style="margin-bottom: 10px;">Message: ${req.body.message}</li>
+      <li style="margin-bottom: 10px;">Name: ${name}</li>
+      <li style="margin-bottom: 10px;">Email: ${email}</li>
+      <li style="margin-bottom: 10px;">Phone: ${phone}</li>
+      <li style="margin-bottom: 10px;">Message: ${message}</li>
     </ul>
   `;
 
@@ -79,9 +81,9 @@ app.post("/.netlify/functions/api/contact", (req, res) => {
     <p>You have a new mail from ImperoTechne Get Quote Form</p>
     <h3>Contact Details</h3>
     <ul>
-      <li style="margin-bottom: 10px;">Name: ${req.body.name}</li>
-      <li style="margin-bottom: 10px;">Email: ${req.body.email}</li>
-      <li style="margin-bottom: 10px;">Message: ${req.body.message}</li>
+      <li style="margin-bottom: 10px;">Name: ${name}</li>
+      <li style="margin-bottom: 10px;">Email: ${email}</li>
+      <li style="margin-bottom: 10px;">Message: ${message}</li>
     </ul>
   `;
 
