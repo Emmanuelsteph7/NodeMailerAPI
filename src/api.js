@@ -27,7 +27,7 @@ app.get("/.netlify/functions/api/hello", (req, res) => {
 
 app.post("/.netlify/functions/api/contact", (req, res) => {
   
-  if (req.body.phone) {
+  if (!req.body.phone == undefined) {
   const output = `
     <p>You have a new mail from ImperoTechne contact form</p>
     <h3>Contact Details</h3>
